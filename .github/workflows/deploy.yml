@@ -14,16 +14,14 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Prepare environment
-            - uses: actions/setup-node@v3
+              uses: actions/setup-node@v3
               with:
                   node-version: "22"
 
-            - uses: pnpm/action-setup@v2
-                with:
-                    version: 9
-    
-                - name: Install deps
-              run: pnpm install --frozen-lockfile --ignore-scripts=false
+            - run: npm install --global pnpm
+
+            - name: Install deps
+              run: pnpm m i
 
             - name: Build plugin(s)
               run: node ./build.mjs
